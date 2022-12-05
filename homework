@@ -1,0 +1,156 @@
+
+def example_and(pin1, pin2):
+  a = pin1
+  b = pin2
+  c = a and b
+  return c
+
+def thomas_letter_grade(pct):
+  if pct >= 93:
+    return "A"
+  elif pct >= 90:
+    return "A-"
+  elif pct >= 87:
+    return "B+"
+  elif pct >= 83:
+    return "B"
+  elif pct >= 80:
+    return "B-"
+  elif pct >= 77:
+    return "C+"
+  elif pct >= 73:
+    return "C"
+  elif pct >= 70:
+    return "C-"
+  elif pct >= 67:
+    return "D+"
+  elif pct >= 63:
+    return "D"
+  elif pct >= 60:
+    return "D-"
+  elif pct >= 0:
+    return "F"
+  else:
+    return "Invalid"
+
+def is_ascending(items):
+  leng = int(len(items)) - 1
+  a = 0
+  while a < leng:
+    if items[a] < items[a+1]:
+      a = a + 1
+      continue
+    else:
+      return False
+  return True
+
+def f_to_celsius(fahrenheit):
+  celcius = (fahrenheit -32) * 5/9
+  return celcius
+
+def f_to_celsius_str(fahrenheit):
+  celsius = (fahrenheit -32) * 5/9
+  return f'{celsius:.2f}'
+
+def only_odd_digits(n):
+  n = str(n)
+  leng = len(n)
+  a = 0
+  while a < leng:
+    check = int(n[a])
+    check = check % 2
+    if check == 0:
+      return False
+    else:
+      a = a + 1
+  return True
+
+def crossword_solver_exact_case(word):
+  f = open("words.txt","r")
+  words = f.readlines()
+  possible_words=[]
+
+  for i in range(len(words)):
+    if len(words[i].strip()) == len(word):
+      possible_words.append(words[i].strip())
+  for i in range(len(word)):
+    if word[i] != "-":
+      possible_words = [x for x in possible_words if word[i] == x[i]]
+  return possible_words
+
+def crossword_solver_ignore_case(word):
+  f = open("words.txt","r")
+  words = f.readlines()
+  possible_words=[]
+
+  for i in range(len(words)):
+    if len(words[i].strip()) == len(word):
+      possible_words.append(words[i].strip())
+  for i in range(len(word)):
+    if word[i] != "-":
+      possible_words = [x for x in possible_words if word[i].lower() == x[i].lower()]
+  return possible_words
+
+def recursive_list_sum(numbers):
+  if len(numbers) == 0:
+    return 0
+  first = numbers[0]
+  rest = numbers[1:]
+  return recursive_list_sum(rest) + int(first)
+
+def letter_pattern_frequency(letters):
+  f = open("words.txt","r")
+  words = f.readlines()
+  possible_words=[]
+
+  letters = str(letters)
+  tally = 0
+  
+  for i in range(len(words)):
+    a = str(words[i].strip())
+    b = a.find(letters)
+    if b >= 0:
+      tally = tally + 1
+    else: 
+      continue
+  perc = tally / len(words) * 100
+  return (tally,perc)
+
+def generate_frequency_dictionary(elems):
+    new_dict = {}
+    if len(elems) == 0:
+      {}
+    for string in elems:
+      if string in new_dict.keys():
+        new_dict[string] += 1
+      else:
+        new_dict[string] = 1
+    return new_dict
+
+def frequency_sort(elems):
+  for i in range(len(elems)):
+    results = elems.sort()
+    results = sorted(elems, key = elems.count, reverse = True)
+    return(results)
+
+def is_perfect_power(n):
+  for b in range(2,n):
+    e = 1
+    a = b**e
+    while a <= n:
+      a = b**e
+      if a == n:
+        return True
+      e = e + 1
+  return False
+
+def disemvowel(text):
+  vowels = ['yay','ya','ay','ye','ey','iy','yi','yo','oy','yu','uy','e','i','o','u','a']
+  i = 0
+  for i in range(len(vowels)):
+    if vowels[i] in text:
+      text = text.replace (vowels[i],'')
+      i = i + 1
+    else:
+      i = i + 1
+  return(text)
